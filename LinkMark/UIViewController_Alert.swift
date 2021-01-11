@@ -19,3 +19,16 @@ extension UIViewController {
     }
     
 }
+
+//extension UITableViewController {
+//    func alert(title: String = "알림", message: String) {
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//
+//        let removeAction = UIAlertAction(title: "삭제", style: .destructive)
+//        alert.addAction(removeAction)
+//        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+//        alert.addAction(cancelAction)
+//
+//        present(alert, animated: true, completion: nil)
+//    }
+//}

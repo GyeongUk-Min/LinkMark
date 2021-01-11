@@ -82,8 +82,17 @@ class UrlListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            URLAddress.exampleLinkList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let alert = UIAlertController(title: "알림", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
+            
+            let removeAction = UIAlertAction(title: "삭제", style: .destructive, handler: {_ in
+                URLAddress.exampleLinkList.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            })
+            alert.addAction(removeAction)
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            present(alert, animated: true, completion: nil)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
