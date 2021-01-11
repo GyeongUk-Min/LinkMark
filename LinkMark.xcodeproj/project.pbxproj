@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5591B42C25A6C08400A1C016 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591B42B25A6C08400A1C016 /* Model.swift */; };
+		5591B43025A73B2A00A1C016 /* UrlListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591B42F25A73B2A00A1C016 /* UrlListTableViewController.swift */; };
+		5591B43625A835EF00A1C016 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591B43525A835EF00A1C016 /* AddViewController.swift */; };
+		5591B43E25A84B4200A1C016 /* UIViewController_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591B43D25A84B4200A1C016 /* UIViewController_Alert.swift */; };
 		55E7DE0D25A5F20700B62D1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7DE0C25A5F20700B62D1B /* AppDelegate.swift */; };
 		55E7DE0F25A5F20700B62D1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7DE0E25A5F20700B62D1B /* SceneDelegate.swift */; };
-		55E7DE1125A5F20700B62D1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7DE1025A5F20700B62D1B /* ViewController.swift */; };
+		55E7DE1125A5F20700B62D1B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7DE1025A5F20700B62D1B /* DetailViewController.swift */; };
 		55E7DE1425A5F20700B62D1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55E7DE1225A5F20700B62D1B /* Main.storyboard */; };
 		55E7DE1725A5F20700B62D1B /* LinkMark.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55E7DE1525A5F20700B62D1B /* LinkMark.xcdatamodeld */; };
 		55E7DE1925A5F20A00B62D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55E7DE1825A5F20A00B62D1B /* Assets.xcassets */; };
@@ -17,10 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5591B42B25A6C08400A1C016 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		5591B42F25A73B2A00A1C016 /* UrlListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlListTableViewController.swift; sourceTree = "<group>"; };
+		5591B43525A835EF00A1C016 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		5591B43D25A84B4200A1C016 /* UIViewController_Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Alert.swift; sourceTree = "<group>"; };
 		55E7DE0925A5F20700B62D1B /* LinkMark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkMark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E7DE0C25A5F20700B62D1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55E7DE0E25A5F20700B62D1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		55E7DE1025A5F20700B62D1B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		55E7DE1025A5F20700B62D1B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		55E7DE1325A5F20700B62D1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55E7DE1625A5F20700B62D1B /* LinkMark.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LinkMark.xcdatamodel; sourceTree = "<group>"; };
 		55E7DE1825A5F20A00B62D1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5591B42A25A6C06900A1C016 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5591B42B25A6C08400A1C016 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		55E7DE0025A5F20700B62D1B = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +74,13 @@
 		55E7DE0B25A5F20700B62D1B /* LinkMark */ = {
 			isa = PBXGroup;
 			children = (
+				5591B42F25A73B2A00A1C016 /* UrlListTableViewController.swift */,
+				5591B43525A835EF00A1C016 /* AddViewController.swift */,
+				5591B43D25A84B4200A1C016 /* UIViewController_Alert.swift */,
+				55E7DE1025A5F20700B62D1B /* DetailViewController.swift */,
+				5591B42A25A6C06900A1C016 /* Model */,
 				55E7DE0C25A5F20700B62D1B /* AppDelegate.swift */,
 				55E7DE0E25A5F20700B62D1B /* SceneDelegate.swift */,
-				55E7DE1025A5F20700B62D1B /* ViewController.swift */,
 				55E7DE1225A5F20700B62D1B /* Main.storyboard */,
 				55E7DE1825A5F20A00B62D1B /* Assets.xcassets */,
 				55E7DE1A25A5F20A00B62D1B /* LaunchScreen.storyboard */,
@@ -140,9 +160,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55E7DE1125A5F20700B62D1B /* ViewController.swift in Sources */,
+				5591B42C25A6C08400A1C016 /* Model.swift in Sources */,
+				55E7DE1125A5F20700B62D1B /* DetailViewController.swift in Sources */,
+				5591B43625A835EF00A1C016 /* AddViewController.swift in Sources */,
+				5591B43E25A84B4200A1C016 /* UIViewController_Alert.swift in Sources */,
 				55E7DE0D25A5F20700B62D1B /* AppDelegate.swift in Sources */,
 				55E7DE1725A5F20700B62D1B /* LinkMark.xcdatamodeld in Sources */,
+				5591B43025A73B2A00A1C016 /* UrlListTableViewController.swift in Sources */,
 				55E7DE0F25A5F20700B62D1B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +316,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LinkMark/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,6 +335,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LinkMark/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
