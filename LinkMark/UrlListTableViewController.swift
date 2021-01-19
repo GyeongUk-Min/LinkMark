@@ -13,7 +13,12 @@ class UrlListTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        tableView.reloadData()
+        //배열을 데이터로 채움
+        URLAddress.shared.fetchURL()
+        
+        //데이터 새로고침
+        tableView.reloadData()
+        
 //        print(#function)
     }
     
@@ -23,6 +28,15 @@ class UrlListTableViewController: UITableViewController {
     deinit {
         if let token = token {
             NotificationCenter.default.removeObserver(token)
+        }
+    }
+    
+    // segue가 연결된 화면을 생성 및 화면 전환 직전에 호출
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+            if let vc = segue.destination as? DetailViewController {
+                vc.urlDetail = URLAddress.shared.urlList[indexPath.row]
+            }
         }
     }
     
@@ -52,17 +66,17 @@ class UrlListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return URLAddress.exampleLinkList.count
+        return URLAddress.shared.urlList.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LinkList", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "linkList", for: indexPath)
 
         // Configure the cell...
-        let target = URLAddress.exampleLinkList[indexPath.row]
+        let target = URLAddress.shared.urlList[indexPath.row]
         cell.textLabel?.text = target.name
-        cell.detailTextLabel?.text = target.url
+        cell.detailTextLabel?.text = target.address
 
         return cell
     }
@@ -85,7 +99,7 @@ class UrlListTableViewController: UITableViewController {
             let alert = UIAlertController(title: "알림", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
             
             let removeAction = UIAlertAction(title: "삭제", style: .destructive, handler: {_ in
-                URLAddress.exampleLinkList.remove(at: indexPath.row)
+                URLAddress.shared.urlList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             })
             alert.addAction(removeAction)
@@ -102,9 +116,9 @@ class UrlListTableViewController: UITableViewController {
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let urlToMove = URLAddress.exampleLinkList[(fromIndexPath as NSIndexPath).row]
-        URLAddress.exampleLinkList.remove(at: (fromIndexPath as NSIndexPath).row)
-        URLAddress.exampleLinkList.insert(urlToMove, at: (to as NSIndexPath).row)
+        let urlToMove = URLAddress.shared.urlList[(fromIndexPath as NSIndexPath).row]
+        URLAddress.shared.urlList.remove(at: (fromIndexPath as NSIndexPath).row)
+        URLAddress.shared.urlList.insert(urlToMove, at: (to as NSIndexPath).row)
     }
     
 

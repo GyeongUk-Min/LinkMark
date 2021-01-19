@@ -35,8 +35,8 @@ class AddViewController: UIViewController {
             return
         }
         
-        let newUrl = URLAddress(name: nametext, url: urltext)
-        URLAddress.exampleLinkList.append(newUrl)
+//        let newUrl = URLAddress.shared.urlList(name: nametext, address: urltext)
+//        URLAddress.shared.urlList.append(newUrl)
         
         NotificationCenter.default.post(name: AddViewController.newUrlDidInsert, object: nil)
         

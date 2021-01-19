@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5591B42C25A6C08400A1C016 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591B42B25A6C08400A1C016 /* Model.swift */; };
+		555CFC4025B5CF75002098A6 /* URLAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555CFC3F25B5CF75002098A6 /* URLAddress.swift */; };
 		5591B43025A73B2A00A1C016 /* UrlListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591B42F25A73B2A00A1C016 /* UrlListTableViewController.swift */; };
 		5591B43625A835EF00A1C016 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591B43525A835EF00A1C016 /* AddViewController.swift */; };
 		5591B43E25A84B4200A1C016 /* UIViewController_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591B43D25A84B4200A1C016 /* UIViewController_Alert.swift */; };
@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5591B42B25A6C08400A1C016 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		555CFC3F25B5CF75002098A6 /* URLAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLAddress.swift; sourceTree = "<group>"; };
 		5591B42F25A73B2A00A1C016 /* UrlListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlListTableViewController.swift; sourceTree = "<group>"; };
 		5591B43525A835EF00A1C016 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		5591B43D25A84B4200A1C016 /* UIViewController_Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Alert.swift; sourceTree = "<group>"; };
@@ -47,17 +47,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5591B42A25A6C06900A1C016 /* Model */ = {
+		5591B42A25A6C06900A1C016 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5591B42B25A6C08400A1C016 /* Model.swift */,
+				555CFC3F25B5CF75002098A6 /* URLAddress.swift */,
 			);
-			path = Model;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		55E7DE0025A5F20700B62D1B = {
 			isa = PBXGroup;
 			children = (
+				5591B42A25A6C06900A1C016 /* Data */,
 				55E7DE0B25A5F20700B62D1B /* LinkMark */,
 				55E7DE0A25A5F20700B62D1B /* Products */,
 			);
@@ -78,7 +79,6 @@
 				5591B43525A835EF00A1C016 /* AddViewController.swift */,
 				5591B43D25A84B4200A1C016 /* UIViewController_Alert.swift */,
 				55E7DE1025A5F20700B62D1B /* DetailViewController.swift */,
-				5591B42A25A6C06900A1C016 /* Model */,
 				55E7DE0C25A5F20700B62D1B /* AppDelegate.swift */,
 				55E7DE0E25A5F20700B62D1B /* SceneDelegate.swift */,
 				55E7DE1225A5F20700B62D1B /* Main.storyboard */,
@@ -160,12 +160,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5591B42C25A6C08400A1C016 /* Model.swift in Sources */,
 				55E7DE1125A5F20700B62D1B /* DetailViewController.swift in Sources */,
 				5591B43625A835EF00A1C016 /* AddViewController.swift in Sources */,
 				5591B43E25A84B4200A1C016 /* UIViewController_Alert.swift in Sources */,
 				55E7DE0D25A5F20700B62D1B /* AppDelegate.swift in Sources */,
 				55E7DE1725A5F20700B62D1B /* LinkMark.xcdatamodeld in Sources */,
+				555CFC4025B5CF75002098A6 /* URLAddress.swift in Sources */,
 				5591B43025A73B2A00A1C016 /* UrlListTableViewController.swift in Sources */,
 				55E7DE0F25A5F20700B62D1B /* SceneDelegate.swift in Sources */,
 			);
