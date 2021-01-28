@@ -7,19 +7,26 @@
 import Foundation
 import UIKit
 
-class UrlListTableViewController: UITableViewController {
+class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
+    
     @IBOutlet var tvListView: UITableView!
+    @IBOutlet var URLSearchBar: UISearchBar!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         //배열을 데이터로 채움
         URLAddress.shared.fetchURL()
         
         //데이터 새로고침
         tableView.reloadData()
-        
-//        print(#function)
+    
+        print(#function)
+    }
+    
+    // 빈 공간 터치시 키보드 내리기
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        URLSearchBar.resignFirstResponder()
     }
     
     // 옵저버 생성
@@ -40,6 +47,7 @@ class UrlListTableViewController: UITableViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,13 +56,19 @@ class UrlListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        URLSearchBar.delegate = self
         
-        // addViewController에서 url save시 leload
+        // addViewController에서 url save시 leload 옵저버 생성
         token = NotificationCenter.default.addObserver(forName: AddViewController.newUrlDidInsert, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             self?.tableView.reloadData()
         }
     }
-    @IBAction func editListBtnClicked(_ sender: UIBarButtonItem) {
+    
+    // 테이블 셀 터치시 선택한 링크 사파리 연결
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = URL(string: "\(String(URLAddress.shared.urlList[indexPath.row].address!))") {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
     
     // MARK: - Table view data source
@@ -64,12 +78,18 @@ class UrlListTableViewController: UITableViewController {
 //        return 1
 //    }
 
+    //테이블 뷰 Detail Disclosure 버튼 구현
+//    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//
+//    }
+    
+    //테이블 뷰 로드하기
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return URLAddress.shared.urlList.count
     }
 
-    
+    //셀 수만큼 로드하기
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "linkList", for: indexPath)
 
@@ -101,6 +121,8 @@ class UrlListTableViewController: UITableViewController {
             let removeAction = UIAlertAction(title: "삭제", style: .destructive, handler: {_ in
                 URLAddress.shared.urlList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                URLAddress.shared.saveContext()
             })
             alert.addAction(removeAction)
             let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -112,8 +134,7 @@ class UrlListTableViewController: UITableViewController {
         }    
     }
     
-
-    
+    // 편집 후 목록 자리 바꾸기
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let urlToMove = URLAddress.shared.urlList[(fromIndexPath as NSIndexPath).row]
@@ -140,4 +161,19 @@ class UrlListTableViewController: UITableViewController {
     }
     */
 
+    //검색 중 text가 바뀔 경우
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        <#code#>
+//    }
+//
+//    //검색 터치 시 키보드 올림
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        URLSearchBar.becomeFirstResponder()
+//    }
+//
+//    //검색 완료 시 키보드 내림
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        URLSearchBar.resignFirstResponder()
+//    }
 }
+
