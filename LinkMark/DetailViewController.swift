@@ -22,9 +22,6 @@ class DetailViewController: UIViewController {
         configureTextField()
         configureTapGesture()
         openURLBtn.layer.cornerRadius = 20
-        
-        
-        
     }
     
     // 버튼 터치 시 사파리로 접속
@@ -46,14 +43,30 @@ class DetailViewController: UIViewController {
     
     // copy
     @IBAction func urlCopyBtn(_ sender: UIBarButtonItem) {
+        UIPasteboard.general.string = urlAddress.text
+        print("urlCopyBtn()-called")
     }
     
-    // 공유
-    @IBAction func urlShareBtn(_ sender: UIBarButtonItem) {
-    }
+//    // 공유
+//    @IBAction func urlShareBtn(_ sender: UIBarButtonItem) {
+//    }
     
     // 삭제
     @IBAction func urlDelete(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "삭제 확인", message: "삭제할까요?", preferredStyle: .alert)
+        let removeAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] (action) in
+            URLAddress.shared.deleteUrl(self?.urlDetail)
+            self?.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(removeAction)
+    
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+        print(#function)
+        
     }
     
     // 텍스트 불러오기

@@ -69,6 +69,8 @@ class AddViewController: UIViewController {
         
         NotificationCenter.default.post(name: AddViewController.newUrlDidInsert, object: nil)
         
+        print(#function)
+        
         dismiss(animated: true, completion: nil)
     }
     

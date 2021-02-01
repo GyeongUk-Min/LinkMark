@@ -116,15 +116,16 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            let alert = UIAlertController(title: "알림", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "삭제 확인", message: "삭제할까요?", preferredStyle: .alert)
             
-            let removeAction = UIAlertAction(title: "삭제", style: .destructive, handler: {_ in
+            let removeAction = UIAlertAction(title: "삭제", style: .destructive) { (action) in
+                let target = URLAddress.shared.urlList[indexPath.row]
+                URLAddress.shared.deleteUrl(target)
                 URLAddress.shared.urlList.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                
-                URLAddress.shared.saveContext()
-            })
+                tableView.deleteRows(at: [indexPath], with: .left)
+            }
             alert.addAction(removeAction)
+            
             let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
             
