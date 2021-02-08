@@ -9,10 +9,10 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet var openURLBtn: UIButton!
     @IBOutlet var urlAddress: UITextField!
     @IBOutlet var urlName: UITextField!
-    @IBOutlet var urlEditBtn: UIBarButtonItem!
+    @IBOutlet var saveBtn: UIButton!
+    
     var urlDetail: Favorite?
     var editBtnClicked = false
     
@@ -21,40 +21,49 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         configureTextField()
         configureTapGesture()
-        openURLBtn.layer.cornerRadius = 20
+        saveBtn.layer.cornerRadius = 20
     }
     
-    // 버튼 터치 시 사파리로 접속
-    @IBAction func openURLBtnClicked(_ sender: UIButton) {
-        if let url = URL(string: "\(String(urlAddress.text!))") {
-            UIApplication.shared.open(url, options: [:])
+    // url 수정 (
+    @IBAction func saveBtnClicked(_ sender: UIButton) {
+        
+        // 비교
+        let editUrlDetailAddress = urlAddress.text
+        let editUrlDetailName = urlName.text
+        
+        guard editUrlDetailName!.count > 0 else {
+            alert(message: "주소를 입력하세요")
+            return
         }
+        guard editUrlDetailAddress!.count > 0 else {
+            alert(message: "이름을 입력하세요")
+            return
+        }
+        
+        // 값이 다를경우 수정본으로 덮어쓰기
+        if editUrlDetailAddress != urlDetail?.address || editUrlDetailName != urlDetail?.name {
+            urlDetail?.address = editUrlDetailAddress
+            urlDetail?.name = editUrlDetailName
+            URLAddress.shared.saveContext()
+        }
+        
+        view.endEditing(true)
+        print(#function)
     }
     
-    // url편집 기능
-    @IBAction func urlEditItem(_ sender: UIBarButtonItem) {
-        if (editBtnClicked) {
-            self.navigationItem.rightBarButtonItem?.title = "Edit"
-        } else {
-            self.navigationItem.rightBarButtonItem?.title = "Done"
-        }
-        editBtnClicked = !editBtnClicked
-    }
     
     // copy
     @IBAction func urlCopyBtn(_ sender: UIBarButtonItem) {
         UIPasteboard.general.string = urlAddress.text
-        print("urlCopyBtn()-called")
+        alert(message: "클립보드에 복사되었습니다")
+        print(#function)
     }
-    
-//    // 공유
-//    @IBAction func urlShareBtn(_ sender: UIBarButtonItem) {
-//    }
     
     // 삭제
     @IBAction func urlDelete(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "삭제 확인", message: "삭제할까요?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "알림", message: "삭제할까요?", preferredStyle: .alert)
         let removeAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] (action) in
+            print(#function)
             URLAddress.shared.deleteUrl(self?.urlDetail)
             self?.navigationController?.popViewController(animated: true)
         }
@@ -64,8 +73,6 @@ class DetailViewController: UIViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-        
-        print(#function)
         
     }
     
@@ -86,8 +93,6 @@ class DetailViewController: UIViewController {
         print("Handle tap was called")
         view.endEditing(true)
     }
-    
-    
 }
 
 

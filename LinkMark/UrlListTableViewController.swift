@@ -6,32 +6,32 @@
 //
 import Foundation
 import UIKit
+import CoreData
 
 class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet var tvListView: UITableView!
     @IBOutlet var URLSearchBar: UISearchBar!
     
+    var filteredData = URLAddress.shared.urlList
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
         //배열을 데이터로 채움
         URLAddress.shared.fetchURL()
-        
         //데이터 새로고침
         tableView.reloadData()
-    
+        
         print(#function)
     }
     
     // 빈 공간 터치시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        URLSearchBar.resignFirstResponder()
+        view.endEditing(true)
     }
     
     // 옵저버 생성
     var token: NSObjectProtocol?
-    
     deinit {
         if let token = token {
             NotificationCenter.default.removeObserver(token)
@@ -56,8 +56,12 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        // 테이블 구분 줄 없애기
+        tvListView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        // setup delegates
+        tvListView.delegate = self
+        tvListView.dataSource = self
         URLSearchBar.delegate = self
-        
         // addViewController에서 url save시 leload 옵저버 생성
         token = NotificationCenter.default.addObserver(forName: AddViewController.newUrlDidInsert, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             self?.tableView.reloadData()
@@ -69,6 +73,31 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
         if let url = URL(string: "\(String(URLAddress.shared.urlList[indexPath.row].address!))") {
             UIApplication.shared.open(url, options: [:])
         }
+        print(#function)
+    }
+    
+    // 서치바 실시간 검색
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchBar.text == "" {
+//
+//            tableView.reloadData()
+//        } else {
+//            filteredData.filter { (<#Favorite#>) -> Bool in
+//                <#code#>
+//            }
+////            filteredData = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+//            tableView.reloadData()
+//        }
+    }
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        view.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
     
     // MARK: - Table view data source
@@ -86,7 +115,11 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
     //테이블 뷰 로드하기
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return URLAddress.shared.urlList.count
+        if URLSearchBar.text == "" {
+            return URLAddress.shared.urlList.count
+        } else {
+            return URLAddress.shared.urlList.count
+        }
     }
 
     //셀 수만큼 로드하기
@@ -94,13 +127,11 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "linkList", for: indexPath)
 
         // Configure the cell...
-        let target = URLAddress.shared.urlList[indexPath.row]
-        cell.textLabel?.text = target.name
-        cell.detailTextLabel?.text = target.address
+        cell.textLabel?.text = URLAddress.shared.urlList[indexPath.row].name
+        cell.detailTextLabel?.text = URLAddress.shared.urlList[indexPath.row].address
 
         return cell
     }
-    
 
 
 //    // Override to support conditional editing of the table view.
@@ -109,8 +140,6 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
 //
 //        return true
 //    }
-    
-
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -161,20 +190,4 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
-    //검색 중 text가 바뀔 경우
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        <#code#>
-//    }
-//
-//    //검색 터치 시 키보드 올림
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        URLSearchBar.becomeFirstResponder()
-//    }
-//
-//    //검색 완료 시 키보드 내림
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        URLSearchBar.resignFirstResponder()
-//    }
 }
-

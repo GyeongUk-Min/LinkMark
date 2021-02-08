@@ -13,19 +13,21 @@ class URLAddress {
     private init() {
         //Singleton
     }
-
+    
     var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
 
     var urlList = [Favorite]()
 
-    func fetchURL() {
+    func fetchURL(searchText: String? = nil) {
         let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
-        
         //정렬
 //        let sortByData = NSSortDescriptor(key: "urlAddress", ascending: false)
 //        request.sortDescriptors = [sortByData]
+        if let searchText = searchText {
+            let searchText = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+        }
         do {
             urlList = try mainContext.fetch(request)
         } catch {
@@ -50,6 +52,12 @@ class URLAddress {
             saveContext()
         }
     }
+    
+    func saveUrl(_ url: String?) {
+        
+    }
+    
+    
     
     // MARK: - Core Data stack
 

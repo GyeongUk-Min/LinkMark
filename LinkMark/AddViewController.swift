@@ -57,8 +57,8 @@ class AddViewController: UIViewController {
             return
         }
         
-        // 저장 시 (https://)프로토콜 확인, 누락 된 경우 삽입
-        let addressCheck = urlAddItem.text!.hasPrefix("https://")
+        // 저장 시 프로토콜 누락 된 경우 삽입
+        let addressCheck = urlAddItem.text!.hasPrefix("http")
         if !addressCheck {
             urlAddItem.text = "https://" + urlAddItem.text!
         }

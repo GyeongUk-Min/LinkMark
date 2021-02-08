@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" placeholder="Search" id="n0v-lg-oXm">
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" placeholder="Search" showsCancelButton="YES" id="n0v-lg-oXm">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -30,7 +30,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="detailButton" indentationWidth="20" reuseIdentifier="linkList" focusStyle="custom" textLabel="oAa-Kc-vSe" detailTextLabel="Siw-lK-DzC" style="IBUITableViewCellStyleSubtitle" id="3fz-jR-arn">
+                            <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="20" reuseIdentifier="linkList" focusStyle="custom" textLabel="oAa-Kc-vSe" detailTextLabel="Siw-lK-DzC" style="IBUITableViewCellStyleSubtitle" id="3fz-jR-arn">
                                 <rect key="frame" x="0.0" y="84" width="414" height="62.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3fz-jR-arn" id="iBj-aU-NBy">
@@ -96,7 +96,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CG3-7i-ZaI">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="copy" id="42N-qw-Xl7" userLabel="urlCopyBtn">
+                                    <barButtonItem title="주소 복사" id="42N-qw-Xl7" userLabel="urlCopyBtn">
                                         <connections>
                                             <action selector="urlCopyBtn:" destination="3gs-9j-Uxu" id="U7B-ym-RbJ"/>
                                         </connections>
@@ -118,7 +118,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 </variation>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpx-aX-Yzl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL 주소 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpx-aX-Yzl">
                                 <rect key="frame" x="60" y="190" width="200" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="vAm-nv-vWT"/>
@@ -158,14 +158,14 @@
                                     <constraint firstAttribute="width" constant="90" id="ROW-t5-afC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <state key="normal" title="Open">
+                                <state key="normal" title="저장">
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 </variation>
                                 <connections>
-                                    <action selector="openURLBtnClicked:" destination="3gs-9j-Uxu" eventType="touchUpInside" id="J1u-p1-Qfz"/>
+                                    <action selector="saveBtnClicked:" destination="3gs-9j-Uxu" eventType="touchUpInside" id="Jwe-89-LZH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -191,17 +191,10 @@
                             <constraint firstItem="Mjg-mJ-FKq" firstAttribute="top" secondItem="0a5-Fg-1EF" secondAttribute="bottom" constant="77" id="zh5-PH-Qgq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="E2J-mB-PVP">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="CxK-lR-fFx" userLabel="urlEditBtn">
-                            <connections>
-                                <action selector="urlEditItem:" destination="3gs-9j-Uxu" id="fcj-ey-yjA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="E2J-mB-PVP"/>
                     <connections>
-                        <outlet property="openURLBtn" destination="Mjg-mJ-FKq" id="HTd-gy-UnQ"/>
+                        <outlet property="saveBtn" destination="Mjg-mJ-FKq" id="Rxu-J5-Jz8"/>
                         <outlet property="urlAddress" destination="lb1-we-258" id="XWT-up-cl0"/>
-                        <outlet property="urlEditBtn" destination="CxK-lR-fFx" id="9M9-q6-GNl"/>
                         <outlet property="urlName" destination="0a5-Fg-1EF" id="Lpb-n3-whp"/>
                     </connections>
                 </viewController>
@@ -209,7 +202,7 @@
             </objects>
             <point key="canvasLocation" x="2124.6376811594205" y="-789.50892857142856"/>
         </scene>
-        <!--AddLink-->
+        <!--New Link-->
         <scene sceneID="5Bk-Td-yXu">
             <objects>
                 <viewController id="M3Z-D7-S1G" customClass="AddViewController" customModule="LinkMark" customModuleProvider="target" sceneMemberID="viewController">
@@ -226,7 +219,7 @@
                                     <action selector="keyboardDownBtn:" destination="M3Z-D7-S1G" eventType="touchUpInside" id="btM-KD-sqE"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex) https://apple.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nxz-ci-IKa">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex) https://youtube.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nxz-ci-IKa">
                                 <rect key="frame" x="40" y="140" width="334" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -234,7 +227,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 </variation>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2s-WH-obV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL 주소 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2s-WH-obV">
                                 <rect key="frame" x="60" y="106" width="150" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="DrC-M9-dgB"/>
@@ -258,7 +251,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 </variation>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex) Apple Home" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BQ3-6K-vtx">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex) 유튜브" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BQ3-6K-vtx">
                                 <rect key="frame" x="40" y="238" width="334" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -274,7 +267,7 @@
                                     <constraint firstAttribute="height" constant="40" id="Zsa-BX-eDB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <state key="normal" title="Done">
+                                <state key="normal" title="저장">
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -309,8 +302,8 @@
                             <constraint firstItem="BQ3-6K-vtx" firstAttribute="leading" secondItem="Zgd-kV-B5z" secondAttribute="leading" constant="40" id="x6l-ig-x9F"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="AddLink" id="ZVw-Fn-lf7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="DxV-75-W3N">
+                    <navigationItem key="navigationItem" title="New Link" id="ZVw-Fn-lf7">
+                        <barButtonItem key="rightBarButtonItem" title="취소" id="DxV-75-W3N">
                             <connections>
                                 <action selector="closeBtn:" destination="M3Z-D7-S1G" id="lk8-if-Gf7"/>
                             </connections>
