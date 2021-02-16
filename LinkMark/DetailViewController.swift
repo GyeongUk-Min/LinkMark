@@ -45,6 +45,7 @@ class DetailViewController: UIViewController {
             urlDetail?.address = editUrlDetailAddress
             urlDetail?.name = editUrlDetailName
             URLAddress.shared.saveContext()
+            alert(message: "저장되었습니다")
         }
         
         view.endEditing(true)

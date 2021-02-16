@@ -22,6 +22,12 @@ class URLAddress {
 
     func fetchURL(_ searchText: String? = nil) {
         let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        //정렬
+        let sortByData = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortByData]
+        saveContext()
+        
+        //검색
         if searchText != nil {
             request.predicate = NSPredicate(format: "name contains[cd] %@ or address contains[cd] %@", searchText!, searchText!)
             do {
@@ -36,9 +42,6 @@ class URLAddress {
                 print(error)
             }
         }
-        //정렬
-        let sortByData = NSSortDescriptor(key: "name", ascending: true)
-        request.sortDescriptors = [sortByData]
     }
     
     func startFetchURL() {
@@ -46,6 +49,7 @@ class URLAddress {
         //정렬
         let sortByData = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [sortByData]
+        saveContext()
         
         do {
             urlList = try mainContext.fetch(request)
