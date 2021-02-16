@@ -63,9 +63,7 @@ class AddViewController: UIViewController {
             urlAddItem.text = "https://" + urlAddItem.text!
         }
         
-        URLAddress.shared.addUrl(urlAddItem.text, nameAddItem.text)
-//        let newUrl = URLAddress.shared.urlList(name: nametext, address: urltext)
-//        URLAddress.shared.urlList.append(newUrl)
+        URLAddress.shared.addUrl(urlAddItem.text?.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed), nameAddItem.text)
         
         NotificationCenter.default.post(name: AddViewController.newUrlDidInsert, object: nil)
         

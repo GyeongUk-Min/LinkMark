@@ -20,14 +20,33 @@ class URLAddress {
 
     var urlList = [Favorite]()
 
-    func fetchURL(searchText: String? = nil) {
+    func fetchURL(_ searchText: String? = nil) {
+        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        if searchText != nil {
+            request.predicate = NSPredicate(format: "name contains[cd] %@ or address contains[cd] %@", searchText!, searchText!)
+            do {
+                urlList = try mainContext.fetch(request)
+            } catch {
+                print(error)
+            }
+        } else {
+            do {
+                urlList = try mainContext.fetch(request)
+            } catch {
+                print(error)
+            }
+        }
+        //정렬
+        let sortByData = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortByData]
+    }
+    
+    func startFetchURL() {
         let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
         //정렬
-//        let sortByData = NSSortDescriptor(key: "urlAddress", ascending: false)
-//        request.sortDescriptors = [sortByData]
-        if let searchText = searchText {
-            let searchText = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
-        }
+        let sortByData = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortByData]
+        
         do {
             urlList = try mainContext.fetch(request)
         } catch {
@@ -43,6 +62,7 @@ class URLAddress {
         
         urlList.insert(newFavorite, at: 0)
         saveContext()
+        startFetchURL()
     }
     
     // url삭제
@@ -52,12 +72,6 @@ class URLAddress {
             saveContext()
         }
     }
-    
-    func saveUrl(_ url: String?) {
-        
-    }
-    
-    
     
     // MARK: - Core Data stack
 

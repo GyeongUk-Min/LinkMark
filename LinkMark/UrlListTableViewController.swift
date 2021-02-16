@@ -7,19 +7,19 @@
 import Foundation
 import UIKit
 import CoreData
+import SafariServices
 
 class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet var tvListView: UITableView!
     @IBOutlet var URLSearchBar: UISearchBar!
     
-    var filteredData = URLAddress.shared.urlList
+    var filteredData: NSFetchRequest<Favorite> = Favorite.fetchRequest()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //배열을 데이터로 채움
-        URLAddress.shared.fetchURL()
-        //데이터 새로고침
+        URLAddress.shared.startFetchURL()
         tableView.reloadData()
         
         print(#function)
@@ -68,31 +68,26 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    // 테이블 셀 터치시 선택한 링크 사파리 연결
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = URL(string: "\(String(URLAddress.shared.urlList[indexPath.row].address!))") {
-            UIApplication.shared.open(url, options: [:])
-        }
-        print(#function)
-    }
+    
+    
+    // MARK: - search
     
     // 서치바 실시간 검색
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text == "" {
-//
-//            tableView.reloadData()
-//        } else {
-//            filteredData.filter { (<#Favorite#>) -> Bool in
-//                <#code#>
-//            }
-////            filteredData = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
-//            tableView.reloadData()
-//        }
+        if searchBar.text == "" {
+            URLAddress.shared.fetchURL()
+            tableView.reloadData()
+            return
+        }
+        URLAddress.shared.fetchURL(searchText)
+        tableView.reloadData()
+        print(#function)
     }
-    
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
+        URLAddress.shared.fetchURL()
+        tableView.reloadData()
         view.endEditing(true)
     }
     
@@ -115,11 +110,11 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
     //테이블 뷰 로드하기
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if URLSearchBar.text == "" {
+//        if URLSearchBar.text == "" {
+//            return URLAddress.shared.urlList.count
+//        } else {
             return URLAddress.shared.urlList.count
-        } else {
-            return URLAddress.shared.urlList.count
-        }
+//        }
     }
 
     //셀 수만큼 로드하기
@@ -129,6 +124,14 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
         // Configure the cell...
         cell.textLabel?.text = URLAddress.shared.urlList[indexPath.row].name
         cell.detailTextLabel?.text = URLAddress.shared.urlList[indexPath.row].address
+        
+        // 검색어 텍스트 색상 변경
+//        if URLSearchBar.text != nil {
+//            let attString = NSMutableAttributedString(string: URLSearchBar.text!)
+//            let range: NSRange = (URLSearchBar.text! as NSString).range(of: URLSearchBar.text!, options: .caseInsensitive)
+//            attString.addAttribute(.foregroundColor, value: UIColor.blue, range: range)
+//            cell.textLabel?.text = URLAddress.shared.urlList[indexPath.row].name
+//        }
 
         return cell
     }
@@ -145,7 +148,7 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            let alert = UIAlertController(title: "삭제 확인", message: "삭제할까요?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "확인", message: "삭제할까요?", preferredStyle: .alert)
             
             let removeAction = UIAlertAction(title: "삭제", style: .destructive) { (action) in
                 let target = URLAddress.shared.urlList[indexPath.row]
@@ -159,20 +162,31 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
             alert.addAction(cancelAction)
             
             present(alert, animated: true, completion: nil)
-        } else if editingStyle == .insert {
+        }
+        else if editingStyle == .none {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     
     // 편집 후 목록 자리 바꾸기
     // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let urlToMove = URLAddress.shared.urlList[(fromIndexPath as NSIndexPath).row]
-        URLAddress.shared.urlList.remove(at: (fromIndexPath as NSIndexPath).row)
-        URLAddress.shared.urlList.insert(urlToMove, at: (to as NSIndexPath).row)
-    }
+//    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+//        let urlToMove = URLAddress.shared.urlList[(fromIndexPath as NSIndexPath).row]
+//        URLAddress.shared.urlList.remove(at: (fromIndexPath as NSIndexPath).row)
+//        URLAddress.shared.urlList.insert(urlToMove, at: (to as NSIndexPath).row)
+//        URLAddress.shared.saveContext()
+//    }
     
-
+    
+    // 테이블 셀 터치시 링크 접속
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let url = String(URLAddress.shared.urlList[indexPath.row].address!)
+        let encodedURL = url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+        if let myURL = URL(string: encodedURL) {
+            UIApplication.shared.open(myURL as URL, options: [:], completionHandler: nil)
+        }
+        print(#function)
+    }
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
