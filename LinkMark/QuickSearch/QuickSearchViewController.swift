@@ -20,7 +20,17 @@ class QuickSearchViewController: UIViewController, UITextFieldDelegate {
         
         textFieldSetting()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillhide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -150 // 뷰의 Y축을 150 만큼 올림
+    }
+    
+    @objc func keyboardWillhide(_ sender: Notification) {
+        self.view.frame.origin.y = 0 // 뷰를 원래 위치로 되돌림
     }
     
     // textField 키보드 셋팅
@@ -33,6 +43,7 @@ class QuickSearchViewController: UIViewController, UITextFieldDelegate {
         self.searchGoogle.delegate = self
         self.searchYoutube.delegate = self
         self.searchGoogleImage.delegate = self
+//        self.searchNaver.returnKeyType
     }
     
     // return 키
@@ -41,9 +52,14 @@ class QuickSearchViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // 빈 공간 터치 시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    
+    
+    // MARK: - Quick Search
     
     // 네이버 검색
     @IBAction func searchNaverBtn(_ sender: UIButton) {
@@ -55,6 +71,8 @@ class QuickSearchViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.open(searchURL as URL, options: [:], completionHandler: nil)
             }
         }
+        searchNaver.text = ""
+        print(#function)
     }
     
     // 구글 검색
@@ -67,6 +85,8 @@ class QuickSearchViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.open(searchURL as URL, options: [:], completionHandler: nil)
             }
         }
+        searchGoogle.text = ""
+        print(#function)
     }
     
     // 유튜브 검색
@@ -79,6 +99,8 @@ class QuickSearchViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.open(searchURL as URL, options: [:], completionHandler: nil)
             }
         }
+        searchYoutube.text = ""
+        print(#function)
     }
     
     // 구글 이미지 검색
@@ -91,6 +113,8 @@ class QuickSearchViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.open(searchURL as URL, options: [:], completionHandler: nil)
             }
         }
+        searchGoogleImage.text = ""
+        print(#function)
     }
     
     
