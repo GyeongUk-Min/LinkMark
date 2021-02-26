@@ -62,6 +62,7 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
         tvListView.delegate = self
         tvListView.dataSource = self
         URLSearchBar.delegate = self
+        self.tableView.layer.cornerRadius = 10
         // addViewController에서 url save시 leload 옵저버 생성
         token = NotificationCenter.default.addObserver(forName: AddViewController.newUrlDidInsert, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             self?.tableView.reloadData()
@@ -120,7 +121,6 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
     //셀 수만큼 로드하기
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "linkList", for: indexPath)
-
         // Configure the cell...
         cell.textLabel?.text = URLAddress.shared.urlList[indexPath.row].name
         cell.detailTextLabel?.text = URLAddress.shared.urlList[indexPath.row].address
@@ -181,7 +181,7 @@ class UrlListTableViewController: UITableViewController, UISearchBarDelegate {
     // 테이블 셀 터치시 링크 접속
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let url = String(URLAddress.shared.urlList[indexPath.row].address!)
-        let encodedURL = url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+        let encodedURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         if let myURL = URL(string: encodedURL) {
             UIApplication.shared.open(myURL as URL, options: [:], completionHandler: nil)
         }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sNV-wh-UPe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TRl-jh-IwR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--LinkMark-->
+        <!--저장된 링크-->
         <scene sceneID="5mb-wV-It9">
             <objects>
                 <tableViewController id="pSF-dk-eX1" customClass="UrlListTableViewController" customModule="LinkMark" customModuleProvider="target" sceneMemberID="viewController">
@@ -59,6 +59,11 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="3gs-9j-Uxu" kind="show" trigger="accessoryAction" id="zn6-ie-8J4"/>
                                 </connections>
@@ -69,7 +74,7 @@
                             <outlet property="delegate" destination="pSF-dk-eX1" id="JKO-aB-Sya"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="LinkMark" id="tWL-rq-ovP">
+                    <navigationItem key="navigationItem" title="저장된 링크" id="tWL-rq-ovP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="aAq-Tu-Nzu" userLabel="URLAddBtn">
                             <connections>
                                 <segue destination="cmx-uw-wPn" kind="presentation" id="9kR-Q7-yzv"/>
@@ -94,7 +99,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CG3-7i-ZaI">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="764" width="414" height="49"/>
                                 <items>
                                     <barButtonItem title="주소 복사" id="42N-qw-Xl7" userLabel="urlCopyBtn">
                                         <connections>
@@ -115,7 +120,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL 주소 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpx-aX-Yzl">
@@ -127,7 +132,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dca-at-7pO">
@@ -139,7 +144,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a5-Fg-1EF">
@@ -147,7 +152,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mjg-mJ-FKq">
@@ -224,7 +229,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL 주소 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2s-WH-obV">
@@ -236,7 +241,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKM-Wn-0mF">
@@ -248,7 +253,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex) 유튜브" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BQ3-6K-vtx">
@@ -256,7 +261,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptV-Hw-GJZ">
@@ -319,10 +324,30 @@
             </objects>
             <point key="canvasLocation" x="2808.6956521739135" y="-1468.5267857142856"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="IUT-Ej-eXJ">
+            <objects>
+                <tabBarController id="TRl-jh-IwR" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pou-UI-YES">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="sNV-wh-UPe" kind="relationship" relationship="viewControllers" id="OlW-h4-EaJ"/>
+                        <segue destination="UNk-u0-rIG" kind="relationship" relationship="viewControllers" id="xzw-WZ-4fY"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k2B-2S-tgj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-193" y="-790"/>
+        </scene>
+        <!--링크-->
         <scene sceneID="NKa-ZX-n2o">
             <objects>
                 <navigationController id="sNV-wh-UPe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="링크" image="star.fill" catalog="system" id="ORH-ao-twf"/>
+                    <navigationItem key="navigationItem" id="ef2-o8-236"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aaf-pT-DCt">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -334,6 +359,231 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuP-s1-Cth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="625" y="-789"/>
+        </scene>
+        <!--퀵서치-->
+        <scene sceneID="jss-8Z-awc">
+            <objects>
+                <viewController id="UNk-u0-rIG" customClass="QuickSearchViewController" customModule="LinkMark" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zvl-NH-qz3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Tt-Xk-AyI">
+                                <rect key="frame" x="40" y="168" width="284" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="pMS-9g-lez"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="네이버 검색 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsf-TI-VtK">
+                                <rect key="frame" x="50" y="123" width="324" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="NUP-qH-pij"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="구글 검색 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wK6-9R-bPt">
+                                <rect key="frame" x="50" y="233" width="324" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="lPQ-j6-3Dw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mOL-d6-pj5">
+                                <rect key="frame" x="40" y="278" width="284" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="9Cn-xT-jNg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유튜브 검색 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue1-bl-dYz">
+                                <rect key="frame" x="50" y="343" width="324" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="OSK-88-8jP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xcp-ag-S87">
+                                <rect key="frame" x="40" y="388" width="284" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="dne-ox-0C5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8C-8m-aho">
+                                <rect key="frame" x="334" y="168" width="40" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="BPv-t5-2Ba"/>
+                                    <constraint firstAttribute="height" constant="35" id="KGE-IP-vMS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="이동"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                </variation>
+                                <connections>
+                                    <action selector="searchNaverBtn:" destination="UNk-u0-rIG" eventType="touchUpInside" id="pyv-bD-KuG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jd7-nV-H7O">
+                                <rect key="frame" x="334" y="278" width="40" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="GJB-pm-pA0"/>
+                                    <constraint firstAttribute="height" constant="35" id="anf-Dh-gwb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="이동"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                </variation>
+                                <connections>
+                                    <action selector="searchGoogleBtn:" destination="UNk-u0-rIG" eventType="touchUpInside" id="wqY-Km-Q1M"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0r-qm-zXi">
+                                <rect key="frame" x="334" y="388" width="40" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="iiF-0z-QAj"/>
+                                    <constraint firstAttribute="width" constant="40" id="lhS-IZ-ftj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="이동"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                </variation>
+                                <connections>
+                                    <action selector="searchYoutubeBtn:" destination="UNk-u0-rIG" eventType="touchUpInside" id="MON-Tn-XP1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="구글 이미지 검색 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MT-hR-g4X">
+                                <rect key="frame" x="50" y="453" width="324" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="xQW-7A-NEr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mMp-HL-BrU">
+                                <rect key="frame" x="40" y="498" width="284" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="SZH-nh-h9t"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTd-OR-nuo">
+                                <rect key="frame" x="334" y="498" width="40" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="GPH-Jo-DHj"/>
+                                    <constraint firstAttribute="width" constant="40" id="eBW-PD-Okk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="이동"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                </variation>
+                                <connections>
+                                    <action selector="searchGoogleImageBtn:" destination="UNk-u0-rIG" eventType="touchUpInside" id="JkV-TP-dO2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="퀵 서치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1g-yZ-CdK">
+                                <rect key="frame" x="172" y="69" width="70" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="ZYe-El-VP6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6OB-7o-BCr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xcp-ag-S87" firstAttribute="top" secondItem="Ue1-bl-dYz" secondAttribute="bottom" constant="10" id="0RZ-cF-DES"/>
+                            <constraint firstItem="6OB-7o-BCr" firstAttribute="trailing" secondItem="I0r-qm-zXi" secondAttribute="trailing" constant="40" id="4YA-R4-QLS"/>
+                            <constraint firstItem="I0r-qm-zXi" firstAttribute="top" secondItem="Ue1-bl-dYz" secondAttribute="bottom" constant="10" id="9Hb-To-uV4"/>
+                            <constraint firstItem="S8C-8m-aho" firstAttribute="top" secondItem="hsf-TI-VtK" secondAttribute="bottom" constant="10" id="A97-5v-GOO"/>
+                            <constraint firstItem="wK6-9R-bPt" firstAttribute="top" secondItem="3Tt-Xk-AyI" secondAttribute="bottom" constant="30" id="AeN-fz-emd"/>
+                            <constraint firstItem="Ue1-bl-dYz" firstAttribute="top" secondItem="mOL-d6-pj5" secondAttribute="bottom" constant="30" id="CWQ-dV-svb"/>
+                            <constraint firstItem="sTd-OR-nuo" firstAttribute="top" secondItem="3MT-hR-g4X" secondAttribute="bottom" constant="10" id="Cdc-mg-q9I"/>
+                            <constraint firstItem="O1g-yZ-CdK" firstAttribute="centerX" secondItem="zvl-NH-qz3" secondAttribute="centerX" id="DPd-B7-lEh"/>
+                            <constraint firstItem="mMp-HL-BrU" firstAttribute="leading" secondItem="6OB-7o-BCr" secondAttribute="leading" constant="40" id="GDZ-bi-FbL"/>
+                            <constraint firstItem="mMp-HL-BrU" firstAttribute="top" secondItem="3MT-hR-g4X" secondAttribute="bottom" constant="10" id="If8-BQ-IBA"/>
+                            <constraint firstItem="mOL-d6-pj5" firstAttribute="leading" secondItem="6OB-7o-BCr" secondAttribute="leading" constant="40" id="Nc4-Q2-q5x"/>
+                            <constraint firstItem="sTd-OR-nuo" firstAttribute="leading" secondItem="mMp-HL-BrU" secondAttribute="trailing" constant="10" id="PyT-hT-HDP"/>
+                            <constraint firstItem="3Tt-Xk-AyI" firstAttribute="top" secondItem="hsf-TI-VtK" secondAttribute="bottom" constant="10" id="T6v-hH-seJ"/>
+                            <constraint firstItem="Ue1-bl-dYz" firstAttribute="leading" secondItem="6OB-7o-BCr" secondAttribute="leading" constant="50" id="UyI-aL-EnC"/>
+                            <constraint firstItem="6OB-7o-BCr" firstAttribute="trailing" secondItem="sTd-OR-nuo" secondAttribute="trailing" constant="40" id="VEr-fv-UTc"/>
+                            <constraint firstItem="Jd7-nV-H7O" firstAttribute="leading" secondItem="mOL-d6-pj5" secondAttribute="trailing" constant="10" id="Wel-K0-7Nh"/>
+                            <constraint firstItem="O1g-yZ-CdK" firstAttribute="top" secondItem="6OB-7o-BCr" secondAttribute="top" constant="25" id="XZP-Ba-JSm"/>
+                            <constraint firstItem="I0r-qm-zXi" firstAttribute="leading" secondItem="xcp-ag-S87" secondAttribute="trailing" constant="10" id="Znn-Oo-jco"/>
+                            <constraint firstItem="wK6-9R-bPt" firstAttribute="leading" secondItem="6OB-7o-BCr" secondAttribute="leading" constant="50" id="aYJ-N4-2M8"/>
+                            <constraint firstItem="hsf-TI-VtK" firstAttribute="leading" secondItem="6OB-7o-BCr" secondAttribute="leading" constant="50" id="agt-rS-vco"/>
+                            <constraint firstItem="6OB-7o-BCr" firstAttribute="trailing" secondItem="Ue1-bl-dYz" secondAttribute="trailing" constant="40" id="b8A-D7-LiK"/>
+                            <constraint firstItem="3Tt-Xk-AyI" firstAttribute="leading" secondItem="6OB-7o-BCr" secondAttribute="leading" constant="40" id="bfT-Fl-GSE"/>
+                            <constraint firstItem="6OB-7o-BCr" firstAttribute="trailing" secondItem="S8C-8m-aho" secondAttribute="trailing" constant="40" id="c7c-P4-0X4"/>
+                            <constraint firstItem="Jd7-nV-H7O" firstAttribute="top" secondItem="wK6-9R-bPt" secondAttribute="bottom" constant="10" id="cOo-bR-93I"/>
+                            <constraint firstItem="xcp-ag-S87" firstAttribute="leading" secondItem="6OB-7o-BCr" secondAttribute="leading" constant="40" id="d0e-Sy-oRK"/>
+                            <constraint firstItem="hsf-TI-VtK" firstAttribute="top" secondItem="O1g-yZ-CdK" secondAttribute="bottom" constant="30" id="d6Z-Xv-Unx"/>
+                            <constraint firstItem="mOL-d6-pj5" firstAttribute="top" secondItem="wK6-9R-bPt" secondAttribute="bottom" constant="10" id="frA-RA-YCd"/>
+                            <constraint firstItem="6OB-7o-BCr" firstAttribute="trailing" secondItem="wK6-9R-bPt" secondAttribute="trailing" constant="40" id="j4V-tV-wXI"/>
+                            <constraint firstItem="6OB-7o-BCr" firstAttribute="trailing" secondItem="Jd7-nV-H7O" secondAttribute="trailing" constant="40" id="nyn-QT-CLk"/>
+                            <constraint firstItem="6OB-7o-BCr" firstAttribute="trailing" secondItem="hsf-TI-VtK" secondAttribute="trailing" constant="40" id="p56-UM-d9o"/>
+                            <constraint firstItem="S8C-8m-aho" firstAttribute="leading" secondItem="3Tt-Xk-AyI" secondAttribute="trailing" constant="10" id="sHT-xK-gB6"/>
+                            <constraint firstItem="6OB-7o-BCr" firstAttribute="trailing" secondItem="3MT-hR-g4X" secondAttribute="trailing" constant="40" id="uZz-pB-0QP"/>
+                            <constraint firstItem="3MT-hR-g4X" firstAttribute="top" secondItem="xcp-ag-S87" secondAttribute="bottom" constant="30" id="vUe-I9-BDm"/>
+                            <constraint firstItem="3MT-hR-g4X" firstAttribute="leading" secondItem="6OB-7o-BCr" secondAttribute="leading" constant="50" id="zEN-Rc-cJU"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="퀵서치" image="magnifyingglass" catalog="system" id="rD7-g3-O8I"/>
+                    <navigationItem key="navigationItem" id="9UD-TO-sn8"/>
+                    <connections>
+                        <outlet property="searchGoogle" destination="mOL-d6-pj5" id="LzI-Co-Yd5"/>
+                        <outlet property="searchGoogleImage" destination="mMp-HL-BrU" id="wEj-SP-2mT"/>
+                        <outlet property="searchNaver" destination="3Tt-Xk-AyI" id="bn2-hs-HXN"/>
+                        <outlet property="searchYoutube" destination="xcp-ag-S87" id="nu3-0q-qRX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lqk-d7-p6r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2124.6376811594205" y="-82.366071428571431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xJf-Ul-dcN">
@@ -355,6 +605,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
